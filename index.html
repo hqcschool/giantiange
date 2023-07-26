@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+    <style>
+        * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background-color: aliceblue;
+    }
+
+    .container {
+        display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    height: 50px;
+    margin: 20px auto;
+}
+    
+
+    .container>div {
+        width: 200px;
+        height: 150px;
+        border-radius: 10px;
+        margin: 40px;
+        box-shadow: 5px 5px 10px #868080;
+    }
+
+    .container>div:hover {
+        margin-top: -10px;
+
+
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+    }
+
+    a {
+        display: block;
+        text-decoration: none;
+        text-align: center;
+        line-height: 150px;
+        color: blueviolet;
+    }
+    .bok{
+           width:1000px;
+          height: 800px;
+           margin: auto;
+    }
+    #vco{
+           width:45%;
+           height:300px;
+           margin: auto;
+           border:1px solid black;
+    }
+    </style>
+</head>
+<body>
+    <div class="bok">
+        <div class="container">
+        <div style="background: linear-gradient(0deg, rgb(174, 170, 185) 0%, rgb(228, 129, 200) 100%);">
+                <a href=""></a>
+            </div>
+         <div style="background: linear-gradient(0deg, rgb(159, 200, 217) 0%, rgb(99, 140, 210) 100%);">
+                <a href=""></a>
+            </div>
+             
+            <div style="background: linear-gradient(120deg, rgb(161, 196, 253) 0%, rgb(17, 212, 62) 100%);">
+                <a href=""></a>
+            </div>
+            <div style="background: linear-gradient(120deg, rgb(182, 205, 130) 0%, rgb(39, 60, 2) 100%);">
+                <a href=""></a>
+            </div>
+            <div style="background: linear-gradient(120deg, rgb(126, 193, 151) 0%, rgb(63, 180, 238) 100%);">
+                <a href=""></a>
+            </div>
+            <div style="background: linear-gradient(0deg, rgb(112, 180, 116) 0%, rgb(23, 112, 160) 100%);">
+                <a href=""></a>
+            </div>
+            <div style="background: linear-gradient(0deg, rgb(112, 180, 116) 0%, rgb(23, 112, 160) 100%);">
+                <a href=""></a>
+            </div>
+            <div style="background: linear-gradient(0deg, rgb(112, 180, 116) 0%, rgb(23, 112, 160) 100%);">
+                <a href=""></a>
+            </div>
+            <div style="background: linear-gradient(0deg, rgb(112, 180, 116) 0%, rgb(23, 112, 160) 100%);">
+                <a href=""></a>
+            </div>
+        </div>
+    </div>
+     <div id="vco" style="width: 95%"></div>
+ 
+</body>
+<script>
+    new Valine({
+      el: "#vco",
+      appId: "yyRDBfxtOPeePYQVdbZ4nYUu-gzGzoHsz",
+      appKey: "i6pcxv2HWfAWHvZDslhnGBzD",
+    });
+  </script>
+</html>
