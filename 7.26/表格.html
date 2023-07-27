@@ -74,7 +74,7 @@
         <input v-model="newItem.id" type="text" />
         <span>{{topItem.name}}:</span>
         <input v-model="newItem.name" type="text" />
-        <button @click="addItem">{{tx}}</button>
+        <button @click="addItem">{{vut}}</button>
 
       </div>
       <!-- 表格 -->
@@ -108,12 +108,12 @@
       el: "#box",
       data: {
         ss: "ID",
-        message: "汽车名字",
+        message: "名字",
         cz: "操作",
       },
       data() {
         return {
-          tx: "添加",
+          vut: "添加",
 
           //表头数据
           topItem: {
@@ -156,13 +156,13 @@
         editItem(index) {
           this.newItem = { ...this.items[index] };
           this.editIndex = index;
-          this.tv = "修改";
+          this.tv = "添加";
         },
         // 删除条目
         deleteItem(index) {
           if (confirm("确定删除嘛？")) {
-            this.items.splice(index, 1);
-            this.clearForm(); // 清空表单数据和编辑状态
+            // this.items.splice(index, 1);
+            // this.clearForm(); // 清空表单数据和编辑状态
           }
         },
         // 清空表单数据和编辑状态

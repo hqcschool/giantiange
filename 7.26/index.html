@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <script src="/comunt/vue.js"></script>
- 
+  <script src="../comunt/vue.js"></script>
+
   <style>
     #app {
       width: 250px;
@@ -100,26 +100,27 @@
           <td>{{p.age}}</td>
           <td>
             <button @click="fun">添加</button>
-             <button @click="cut(p.id)">修改</button> 
-           <button @click="shan">删除</button>
+            <button @click="cut(p.id)">修改</button>
+            <button @click="shan">删除</button>
             <button @click="fut(p.id)">查看</button>
           </td>
         </tr>
       </tbody>
     </table>
+    <div>
+      <span>id</span>
+      <input type="text" v-model="id">
+      <br>
+      <span>名字</span>
+      <input type="text" v-model="names">
+      <br>
+      <span>年龄</span>
+      <input type="text" v-model="age">
+      <br>
+    </div>
   </div>
-  <div>
-    <span>{{p.id}}:</span>
-    <input type="text"v-model="ne.id">
-    <br>
-    <span>{{p.name}}:</span>
-    <input type="text"v-model="ne.name" >
-    <br>
-    <span>{{p.age}}:</span>
-    <input type="text" v-model="ne.age">
-    <br>
-  </div>
-   <script>
+
+  <script>
 
     var mv = new Vue({
       el: ".table",
@@ -130,47 +131,48 @@
           { id: "3", name: "王五", age: "17" },
           { id: "4", name: "丽丽", age: "16" },
           { id: "5", name: "韵韵", age: "15" }],
-          ne:{
-             id:'',
-             name:'',
-             age:'',
-           },
-           editIndex:-1,
+
+          
         }
       },
       methods: {
         //添加
-       fun(){
-            console.log(this.editIndex);
-            if (this.ne.id && this.ne.name && this.ne.age) {
-              if (this.editIndex > -1) {
-                // 编辑模式，更新对应索引的条目
-                this.prom[this.editIndex] = { ...this.ne };
-              } else {
-                // 添加模式，将新条目推入数组
-                this.prom.push({ ...this.ne });
-              }
-              this.clearForm(); // 清空表单数据和编辑状态
-            } else {
-              alert("请添加字段"); // 提示填写所有字段
-            }
-          },
-       //修改
-       cut(index) {
-       
-            this.ne = { ...this.prom[index] };
-            this.editIndex = index;
-            this.cut = "修改";
-            console.log();
-          },
-       
-       //删除
-        shan:function(prom) {
-          if(confirm("确定删除嘛")){
-            this.prom.splice(this.prom.indexOf(prom),1);
+        fun() {
+          console.log(this.names);
+             let abj={
+              id:this.id,
+              name:this.name,
+              age:this.age,
+             }
+             this.prom.push(abj)
+          // if (this.ne.id && this.ne.name && this.ne.age) {
+          //   if (this.editIndex > -1) {
+          //     // 编辑模式，更新对应索引的条目
+          //     this.prom[this.editIndex] = { ...this.ne };
+          //   } else {
+          //     // 添加模式，将新条目推入数组
+          //     this.prom.push({ ...this.ne });
+          //   }
+          //   this.clearForm(); // 清空表单数据和编辑状态
+          // } else {
+          //   alert("请添加字段"); // 提示填写所有字段
+          // }
+        },
+        //修改
+        // cut(index) {
+        // this.ne = { ...this.prom[index] };
+        // this.editIndex = index;
+        // this.cut = "修改";
+        // console.log();
+        // },
+
+        //删除
+        shan: function (prom) {
+          if (confirm("确定删除嘛")) {
+            this.prom.splice(this.prom.indexOf(prom), 1);
           }
-         },
-             
+        },
+
       }
     })
   </script>
