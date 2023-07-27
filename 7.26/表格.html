@@ -7,6 +7,11 @@
   <title>Document</title>
   <script src="../comunt/vue.js"></script>
   <style>
+     #app {
+      width: 250px;
+      height: 150px;
+      border: 1px solid #ccc;
+    }
     th,
     td {
       width: 200px;
@@ -16,6 +21,51 @@
 </head>
 
 <body>
+  <div id="app">
+    数字1<input type="text" v-model="n1">
+    <br>
+    <select v-model="opu">
+      <option value="+">+</option>
+      <option value="-">-</option>
+      <option value="*">*</option>
+      <option value="/">/</option>
+    </select>
+    <br>
+    数字2<input type="text" v-model="n2">
+    <br>
+    <input type="button" value="=" @click="fun">
+    <br>
+    结果:<input type="text" v-model="at">
+  </div>
+  <script>
+    var mv = new Vue({
+      el: "#app",
+      data: {
+        n1: "",
+        n2: "",
+        opu: "+",
+        at: "",
+      },
+      methods: {
+        fun() {
+          switch (this.opu) {
+            case "+":
+              this.at = Number(this.n1) + Number(this.n2);
+              break;
+            case "-":
+              this.at = Number(this.n1) - Number(this.n2);
+              break;
+            case "*":
+              this.at = Number(this.n1) * Number(this.n2);
+              break;
+            case "/":
+              this.at = Number(this.n1) / Number(this.n2);
+              break;
+          }
+        }
+      }
+    }) 
+  </script>
   <div id="box">
     <div>
       <!-- 添加新条目的表单 -->
