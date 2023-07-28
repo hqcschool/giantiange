@@ -61,7 +61,9 @@
                 </tr>
             </thead>
             <tbody v-for="(time,index) in tes" :key="index">
-                <tr class="yu" :class="[(index%2==0?'n1':'n2'),{n3:time.checked}]">
+                <tr class="yu" 
+                :class="[(index%2==0?'n1':'n2'),{n3:time.checked}]"
+                >
                     <td><input type="checkbox" v-model="time.checked" @click="ket"></td>
                     <td>{{time.id}}</td>
                     <td>{{time.name}}</td>
@@ -201,7 +203,7 @@
                     }
                     this.tes.push(abj)
                 },
-                //排序
+                
             }
         })
 

@@ -93,60 +93,55 @@
           <td>操作</td>
         </tr>
       </thead>
-      <tbody v-for="p in prom" :key="p.id">
+      <tbody v-for="(item,index) in prom" :key="index">
         <tr>
-          <td>{{p.id}}</td>
-          <td>{{p.name}}</td>
-          <td>{{p.age}}</td>
+          <td>{{item.id}}</td>
+          <td>{{item.name}}</td>
+          <td>{{item.age}}</td>
           <td>
             <button @click="fun">添加</button>
-            <!-- <button @click="cut">修改</button> -->
-            <button @click="shan">删除</button>
+            <button @click="cut(index)">修改</button>
+            <button @click="shan(index)">删除</button>
             <button @click="fut(index)">查看</button>
           </td>
         </tr>
       </tbody>
     </table>
     <div>
-      <span>id</span>
-      <input type="text" v-model="id">
-      <br>
-      <span>名字</span>
-      <input type="text" v-model="name">
-      <br>
-      <span>年龄</span>
-      <input type="text" v-model="age">
-      <br>
+      <form action="#">
+        <span>id</span>
+        <input type="text" v-model="id">
+        <br>
+        <span>名字</span>
+        <input type="text" v-model="name">
+        <br>
+        <span>年龄</span>
+        <input type="text" v-model="age">
+        <br>
+        <input type="submit" @click="change" value="提交">
+
+      </form>
+
     </div>
   </div>
 
   <script>
 
-    var mv = new Vue({
+    new Vue({
       el: ".table",
-      data() {
-        return {
-          prom: [{ id: "1", name: "李四", age: "19" },
-          { id: "2", name: "张三", age: "21" },
-          { id: "3", name: "王五", age: "17" },
-          { id: "4", name: "丽丽", age: "16" },
-          { id: "5", name: "韵韵", age: "15" }],
-           arr:{
-            id:"",
-            name:"",
-            age:"",
-           } 
-        }
+ data: {
+       id: "",
+        name: "",
+        age: "",
+        prom: [{ id: "1", name: "李四", age: "19" },
+        { id: "2", name: "张三", age: "21" },
+        { id: "3", name: "王五", age: "17" },
+        { id: "4", name: "丽丽", age: "16" },
+        { id: "5", name: "韵韵", age: "15" }],
+
       },
       methods: {
-        fut(index) {
-          // console.log(this.prom[index]);
-          // this.prom.index=this.name
-          //  this.id=this.prom[index].id,
-          this.id = this.prom[index].id;
-        },
-
-        //添加
+//添加
         fun() {
           let abj = {
             id: this.id,
@@ -154,24 +149,36 @@
             age: this.age,
           }
           this.prom.push(abj)
-          this.id = "";
-          this.name = "";
-          this.age = "";
-        },
-        //修改
-        // cut(index) {
-        // this.ne = { ...this.prom[index] };
-        // this.editIndex = index;
-        // this.cut = "修改";
-        // console.log();
-        // },
-
+   },
         //删除
-        shan: function (prom) {
+        shan(index) {
           if (confirm("确定删除嘛")) {
-            this.prom.splice(this.prom.indexOf(prom), 1);
+            this.prom.splice(index, 1);
           }
         },
+        //修改
+        cut(index) {
+          this.index = index;
+          this.id = this.prom[index].id;
+          this.age = this.prom[index].age;
+          this.name = this.prom[index].name;
+        },
+        //提交
+        change() {
+          event.preventDefault();
+          this.prom[this.index].id = this.id;
+          this.prom[this.index].age = this.age;
+          this.prom[this.index].name = this.name;
+          this.id = ""; this.age = ""; this.name = ""; 	
+        },
+        //查看
+        fut(index) {
+          console.log(index);
+          this.id = this.prom[index].id;
+          this.age = this.prom[index].age;
+          this.name = this.prom[index].name;
+        },
+
 
       }
     })
