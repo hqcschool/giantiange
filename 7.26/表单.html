@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../comunt/vue.js"></script>
+    <style>
+        th {
+            width: 400px;
+        }
+
+        tr,
+        td {
+            width: 100px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+        }
+
+        .yu:hover {
+            background-color: chocolate;
+        }
+
+        /* .lie {
+            background-color: yellow;
+        } */
+
+        .n1 {
+            background-color: yellow;
+        }
+
+        .n2 {
+            background-color: pink;
+        }
+
+        .n3 {
+            background-color: green !important;
+        }
+
+        /* .you {
+            background-color: chocolate;
+        } */
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>全选
+                        <input type="checkbox" @click="checkAll" v-model="bt">
+                    </th>
+                    <th>编号</th>
+                    <th>姓名</th>
+                    <th>性别</th>
+                    <th>年龄</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody v-for="(time,index) in tes" :key="index">
+                <tr class="yu" :class="[(index%2==0?'n1':'n2'),{n3:time.checked}]">
+                    <td><input type="checkbox" v-model="time.checked" @click="ket"></td>
+                    <td>{{time.id}}</td>
+                    <td>{{time.name}}</td>
+                    <td>{{time.sex}}</td>
+                    <td>{{time.age}}</td>
+                    <td>
+                        <button @click="moveUp(index)">上移</button>
+                        <button @click="moveDown(index)">下移</button>
+                        <button @click="shan(index)">删除</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <select style="width:100px" v-model="bian">
+            <option value="编号">编号</option>
+            <option value="年龄">年龄</option>
+        </select>
+        <select style="width:100px" v-model="stu">
+            <option value="升序">升序</option>
+            <option value="降序">降序</option>
+        </select>
+        <button @click="pai">排序</button>
+        名：<input type="text" v-model="name">
+        <select v-model="sex">
+            <option>男</option>
+            <option>女</option>
+        </select>
+        年龄<input type="text" v-model="age">
+        <button @click="tian">添加</button>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                name: "",
+                sex: "",
+                age: "",
+                bian: "编号",
+                stu: "升序",
+                bt: false,
+                tes: [
+                    {
+                        id: 1,
+                        name: "小明",
+                        sex: "男",
+                        age: "11",
+                        checked: false,
+                    },
+                    {
+                        id: 2,
+                        name: "小子",
+                        sex: "男",
+                        age: "13",
+                        checked: false,
+                    },
+                    {
+                        id: 3,
+                        name: "小红",
+                        sex: "女",
+                        age: "15",
+                        checked: false,
+                    }],
+                id: 4,
+            },
+            methods: {
+                //排序
+                pai() {
+                    console.log(this.bian);
+                    if (this.bian == "编号" && this.stu == "升序") {
+                        this.tes.sort((a, b) => a.id - b.id)
+                    }
+                    if (this.bian == "编号" && this.stu == "降序") {
+                        this.tes.sort((a, b) => b.id - a.id)
+                    }
+                    if (this.bian == "年龄" && this.stu == "升序") {
+                        this.tes.sort((a, b) => {
+                            return a.age - b.age;
+                        })
+                    }
+                    if (this.bian == "年龄" && this.stu == "降序") {
+                        this.tes.sort((a, b) => {
+                            return b.age - a.age;
+                        })
+                    }
+                },
+                 ket() {
+                    let vu = []
+                    this.tes.forEach((item) => {
+                        if (item.checked == true) {
+                            vu.push(item.checked)
+                        }
+                   })
+                    if (vu.length == 2) {
+                        this.bt = true
+                    } else {
+                        this.bt = false
+                    }
+
+                },
+                //全选
+                checkAll() {
+                    this.tes.forEach(item => {
+                        item.checked=!this.bt
+                    });
+                },
+                //删除
+                shan: function (index) {
+                    if (confirm("确定删除嘛")) {
+                        this.tes.splice(index, 1);
+                    }
+                },
+                //上移
+                moveUp(index) {
+                    if (index > 0) {
+                        const temp = this.tes[index];
+                        this.tes.splice(index, 1);
+                        this.tes.splice(index - 1, 0, temp);
+                    }
+                },
+                //下移
+                moveDown(index) {
+                    if (index < this.tes.length - 1) {
+                        // 交换当前元素与下一个元素的位置
+                        const temp = this.tes[index];
+                        this.tes.splice(index, 1);
+                        this.tes.splice(index + 1, 0, temp);
+                    }
+                },
+                //添加
+                tian() {
+                    let we = this.id++;
+                    let abj = {
+                        id: we,
+                        name: this.name,
+                        sex: this.sex,
+                        age: this.age,
+                    }
+                    this.tes.push(abj)
+                },
+                //排序
+            }
+        })
+
+    </script>
+</body>
+
+</html>

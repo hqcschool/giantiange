@@ -161,8 +161,7 @@
         // 删除条目
         deleteItem(index) {
           if (confirm("确定删除嘛？")) {
-            // this.items.splice(index, 1);
-            // this.clearForm(); // 清空表单数据和编辑状态
+            this.items.splice(this.items.indexOf(items), 1);
           }
         },
         // 清空表单数据和编辑状态

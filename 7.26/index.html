@@ -100,9 +100,9 @@
           <td>{{p.age}}</td>
           <td>
             <button @click="fun">添加</button>
-            <button @click="cut(p.id)">修改</button>
+            <!-- <button @click="cut">修改</button> -->
             <button @click="shan">删除</button>
-            <button @click="fut(p.id)">查看</button>
+            <button @click="fut(index)">查看</button>
           </td>
         </tr>
       </tbody>
@@ -112,7 +112,7 @@
       <input type="text" v-model="id">
       <br>
       <span>名字</span>
-      <input type="text" v-model="names">
+      <input type="text" v-model="name">
       <br>
       <span>年龄</span>
       <input type="text" v-model="age">
@@ -131,32 +131,32 @@
           { id: "3", name: "王五", age: "17" },
           { id: "4", name: "丽丽", age: "16" },
           { id: "5", name: "韵韵", age: "15" }],
-
-          
+           arr:{
+            id:"",
+            name:"",
+            age:"",
+           } 
         }
       },
       methods: {
+        fut(index) {
+          // console.log(this.prom[index]);
+          // this.prom.index=this.name
+          //  this.id=this.prom[index].id,
+          this.id = this.prom[index].id;
+        },
+
         //添加
         fun() {
-          console.log(this.names);
-             let abj={
-              id:this.id,
-              name:this.name,
-              age:this.age,
-             }
-             this.prom.push(abj)
-          // if (this.ne.id && this.ne.name && this.ne.age) {
-          //   if (this.editIndex > -1) {
-          //     // 编辑模式，更新对应索引的条目
-          //     this.prom[this.editIndex] = { ...this.ne };
-          //   } else {
-          //     // 添加模式，将新条目推入数组
-          //     this.prom.push({ ...this.ne });
-          //   }
-          //   this.clearForm(); // 清空表单数据和编辑状态
-          // } else {
-          //   alert("请添加字段"); // 提示填写所有字段
-          // }
+          let abj = {
+            id: this.id,
+            name: this.name,
+            age: this.age,
+          }
+          this.prom.push(abj)
+          this.id = "";
+          this.name = "";
+          this.age = "";
         },
         //修改
         // cut(index) {

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vue</title>
+  <script src="https://cdn.staticfile.org/vue/2.7.0/vue.min.js"></script>
+</head>
+<style>
+  #box {
+    width: 1000px;
+    height: 500px;
+    margin: auto;
+    border: 3px solid #7abcbc;
+  }
+
+  table {
+    width: 100%;
+    margin-top: 20px;
+    border: 1px solid #ddd;
+  }
+
+  th {
+    color: #fff;
+    height: 30px;
+    background-color: #7abcbc;
+  }
+
+  td {
+    text-align: center;
+    border: 1px solid #ddd;
+  }
+
+  b {
+    color: #7abcbc;
+    font-size: 30px;
+    margin-left: 5px;
+    margin-top: 5px;
+  }
+
+  span {
+    color: #909191;
+  }
+
+  #app {
+    height: 90px;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .one {
+    color: #7abcbc;
+  }
+
+  .two {
+    color: #7abcbc;
+  }
+
+  .bobo {
+    color: #fff;
+    width: 50px;
+    height: 28px;
+    margin-top: 10px;
+    margin-left: 5px;
+    border: 1px solid #7abcbc;
+    background-color: #7abcbc;
+  }
+
+  #pupu {
+    width: 120px;
+    height: 25px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+
+  .zhzh {
+    width: 300px;
+    height: 220px;
+    left: 620px;
+    top: 285px;
+    position: absolute;
+    border: 1px solid black;
+  }
+
+  #wewe {
+    width: 220px;
+    height: 220px;
+    margin: auto;
+  }
+
+  .koko {
+    height: 20px;
+    margin-top: 12px;
+  }
+
+  .anan {
+    width: 104px;
+    height: 30px;
+    margin-top: 30px;
+    border: 1px solid #7abcbc;
+    background-color: #7abcbc;
+  }
+
+  #nunu {
+    width: 104px;
+    height: 30px;
+    margin-top: 30px;
+    margin-left: 10px;
+    border: 1px solid #7abcbc;
+    background-color: #7abcbc;
+  }
+
+  .fgfg {
+    background-color: #ddd !important;
+  }
+</style>
+
+<body>
+  <div id="box">
+    <div id="app">
+      <b>友情链接</b>
+      <span>管理网站的友情链接</span><br />
+      <input type="text" name="" id="pupu" v-model="yuyu" /><button class="bobo" @click="soso()">搜索</button>
+      <button class="bobo" @click="xzxz()">新增</button>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>名称</th>
+          <th>排序&emsp;<span @click="max()">↑</span><span @click="min()">&emsp;↓</span></th>
+          <th>链接</th>
+          <th>描述</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(item,index) in arr" v-bind:key="index" v-zlzl="index" @mouseenter="susu(index)"
+          @mouseleave="huag = -1" v-bind:class='huag==index? "fgfg":""'>
+          <td>{{item.zdzd}}</td>
+          <td>{{item.name}}</td>
+          <td>{{item.ovov}}</td>
+          <td>{{item.lala}}</td>
+          <td>{{item.msms}}</td>
+          <td><span class="one" @click="bnbn(index)" href="">编辑</span>&emsp; <span class="two" @click="dede(index)"
+              href="">删除</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- 添加表单 -->
+    <div class="zhzh" v-show="flag=='abc'">
+      <div id="wewe">
+        名称&emsp;<input type="text" class="koko" v-model="username" /><br />
+        排序&emsp;<input type="text" class="koko" v-model="stst" /><br />
+        链接&emsp;<input type="text" class="koko" v-model="chain" /><br />
+        描述&emsp;<input type="text" class="koko" v-model="copy" /><br />
+        <button class="anan" @click="add()">添加</button>
+        <button id="nunu" @click="ququ()">取消</button>
+      </div>
+    </div>
+    <!-- 编辑表单 -->
+    <div class="zhzh" v-show="flag=='cba'">
+      <div id="wewe">
+        名称&emsp;<input type="text" class="koko" v-model="usernames" /><br />
+        排序&emsp;<input type="text" class="koko" v-model="ststs" /><br />
+        链接&emsp;<input type="text" class="koko" v-model="chains" /><br />
+        描述&emsp;<input type="text" class="koko" v-model="copys" /><br />
+        <button class="anan" @click="eded()">编辑</button><button id="nunu" @click="ququ()">取消</button>
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+  new Vue({
+    el: "#box",
+    data() {
+      return {
+        usernames: "",
+        ststs: "",
+        chains: "",
+        copys: "",
+        username: "",
+        stst: "",
+        chain: "",
+        copy: "",
+        xuh: 3,
+        flag: "",
+        str: 0,
+        huag: -1,
+        yuyu: "",
+        arr: [
+          {
+            zdzd: "1",
+            name: "百度",
+            ovov: "100",
+            lala: "https://baidu.com",
+            msms: "baidu",
+          },
+          {
+            zdzd: "2",
+            name: "高德",
+            ovov: "50",
+            lala: "https://gaode.com",
+            msms: "gaode",
+          },
+        ],
+      };
+    },
+    //列表隔行换色
+    directives: {
+      zlzl(doms, index) {
+        if (index.value % 2 == 1) {
+          doms.style.background = "#eef8fc";
+        } else {
+          doms.style.background = "#fff";
+        }
+      },
+    },
+    methods: {
+      // 添加事件
+      add() {
+        let obj = {
+          zdzd: this.xuh++,
+          name: this.username,
+          ovov: this.stst,
+          lala: this.chain,
+          msms: this.copy,
+        };
+        this.arr.push(obj);
+        this.flag = "!abc";
+        // input赋值为空
+        this.username = "";
+        this.stst = "";
+        this.chain = "";
+        this.copy = "";
+      },
+      //删除
+      dede(index) {
+        if (confirm("确定删除吗")) {
+          this.arr.splice(index, 1);
+        }
+      },
+      //编辑
+      bnbn(index) {
+        console.log(this.arr[index].name);
+        this.flag = "cba";
+        this.index = index;
+        this.usernames = this.arr[index].name;
+        this.ststs = this.arr[index].ovov;
+        this.chains = this.arr[index].lala;
+        this.copys = this.arr[index].msms;
+      },
+      //确定编辑
+      eded() {
+        console.log(this.usernames);
+        this.flag = "!cba";
+        this.arr[this.index].name = this.usernames;
+        this.arr[this.index].ovov = this.ststs;
+        this.arr[this.index].lala = this.chains;
+        this.arr[this.index].msms = this.copys;
+      },
+      //升序
+      max() {
+        this.arr.sort((a, b) => {
+          return a.ovov - b.ovov;
+        });
+      },
+      //降序
+      min() {
+        this.arr.sort((a, b) => {
+          return b.ovov - a.ovov;
+        });
+      },
+      //搜索
+      soso() {
+        this.arr = this.arr.filter((res) => {
+          return res.name.indexOf(this.yuyu) !== -1;
+        });
+      },
+      // 鼠标滑过事件
+      susu(index) {
+        this.huag = index;
+      },
+      //新增
+      xzxz() {
+        this.flag = "abc";
+      },
+      //取消
+      ququ() {
+        this.flag = "!abc";
+      },
+    },
+  });
+</script>
+
+</html>
