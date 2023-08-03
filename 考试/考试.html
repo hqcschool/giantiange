@@ -11,7 +11,6 @@
             width: 1300px;
             height: 900px;
             margin: auto;
-            /* background-color: beige; */
         }
 
         * {
@@ -24,7 +23,6 @@
             height: 690px;
             margin: auto;
             background-color: aqua;
-            /* display: flex; */
             display: inline-block;
         }
 
@@ -33,19 +31,19 @@
             height: 300px;
             margin: 20px;
             display: inline-block;
-            /* background-color: aquamarine; */
         }
 
         .img {
             width: 220px;
             height: 200px;
         }
- .te {
+
+        .te {
             width: 50px;
             height: 50px;
             border-radius: 50px;
             color: aliceblue;
-           background-color: rgb(205, 27, 157); 
+            background-color: rgb(205, 27, 157);
 
         }
 
@@ -53,7 +51,6 @@
             width: 50px;
             height: 50px;
             font-size: 20px;
-             /* background-color: rgb(205, 27, 157);  */
         }
 
         .ti {
@@ -69,10 +66,9 @@
             -webkit-box-orient: vertical;
         }
 
-      
+
         #gou {
-            width: 1270px;
-            /* height:111px; */
+            width: 1250px;
             margin-top: 30px;
             background-color: rgb(205, 27, 157);
         }
@@ -87,7 +83,7 @@
         td {
             width: 150px;
             height: 50px;
-         
+
         }
 
         .bn {
@@ -106,21 +102,60 @@
             height: 30px;
             margin-left: 140px;
         }
-        select{
-                 width:200px;
-                 height:40px;
-                 border:1px solid rgb(205, 27, 157);
-                 color: rgb(205, 27, 157);
+
+        select {
+            width: 200px;
+            height: 40px;
+            border: 1px solid rgb(205, 27, 157);
+            color: rgb(205, 27, 157);
         }
-        .suan{
-             width:300px;
-             /* height:100px; */
-             line-height:100px;
-             /* font-size: 20px; */
-             /* background-color: darkorchid; */
+   .yun {
+            width: 90px;
+            height: 20px;
+            text-align: center;
+            margin: 10px;
+            display: inline-block;
+            border: 1px solid green;
+            border-radius: 50px;
+            color: green;
         }
-        .sun{
+        .foot{
+                 width:1250px;
+                 height:100px;
+                 background-color: aqua;
+                 /* border:1px solid black; */
+        }
+        .right{
+                width:300px;
+                height:100px;
+                 background-color: antiquewhite;
+                 float: right;
+                 line-height:50px;
+                 text-align: center;
+                 color: darkgrey;
+                 font-size: 19px;
+    }
+    .gtr{
+        width: 1249px;
+          height:99px;
+          border:1px solid gray;
+    }
+    .com{
+            width:200px;
+            height:90px;
+           
             display:inline-block;
+            line-height:90px;
+            margin-left:700px;
+          }
+    .sun {
+            display: inline-block;
+            float:right;
+            width:300px;
+            height:90px;
+            text-align: center;
+            line-height:90px;
+            background-color: fuchsia;
         }
     </style>
 </head>
@@ -129,7 +164,7 @@
     <div id="app">
         <div id="box">
             <div class="bi" v-for="(time,index) in tes" :key="index" @click="charset(index)">
-                <img src="../img/1.jpg" class="img">
+                <img :src="time.img" class="img">
                 <span class="te">{{time.te}}</span>
                 <span class="jia">{{time.jing}}</span>
                 <del>{{time.yuan}}</del>
@@ -151,54 +186,102 @@
                         <tr v-for="(item,index) in yu" :key="index">
                             <td>
                                 <input type="checkbox">
-                                {{item.shang}} 
+                                <img :src="item.img" style="width:90px;height:70px;display:inline-block;">
+                                <span class="ti"
+                                    style="display:inline-block;float:right;margin-top:-50px;margin-left:15px;">
+                                    {{item.nei}}
+                                </span>
                             </td>
                             <td>
-                               {{item. jing}} 
+                                {{item. jing}}
                             </td>
                             <td>
-                                <button class="bn" @click="jiao">+</button>
-                              {{item.quantity}} 
-                                <button class="bn1"@click="jian">-</button>
+                                <button class="bn" @click="jiao(index)">+</button>
+                                {{item.quantity}}
+                                <button class="bn1" @click="jian(index)">-</button>
                             </td>
                             <td>
                                 <button class="shan" @click="shan(index)">删除</button>
                             </td>
                         </tr>
-                       </tbody>
+                    </tbody>
                 </table>
-                
             </div>
+            <div>
+                <span class="yun">运费</span>
+                <span>新人免邮</span>
+                <span><svg t="1690722014701" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                        xmlns="http://www.w3.org/2000/svg" p-id="3179" width="15" height="15">
+                        <path
+                            d="M463.99957 784.352211c0 26.509985 21.490445 48.00043 48.00043 48.00043s48.00043-21.490445 48.00043-48.00043c0-26.509985-21.490445-48.00043-48.00043-48.00043S463.99957 757.842226 463.99957 784.352211z"
+                            fill="blue" p-id="3180"></path>
+                        <path
+                            d="M512 960c-247.039484 0-448-200.960516-448-448S264.960516 64 512 64 960 264.960516 960 512 759.039484 960 512 960zM512 128.287273c-211.584464 0-383.712727 172.128262-383.712727 383.712727 0 211.551781 172.128262 383.712727 383.712727 383.712727 211.551781 0 383.712727-172.159226 383.712727-383.712727C895.712727 300.415536 723.551781 128.287273 512 128.287273z"
+                            fill="blue" p-id="3181"></path>
+                        <path
+                            d="M512 673.695256c-17.664722 0-32.00086-14.336138-32.00086-31.99914l0-54.112297c0-52.352533 39.999785-92.352318 75.32751-127.647359 25.887273-25.919957 52.67249-52.67249 52.67249-74.016718 0-53.343368-43.07206-96.735385-95.99914-96.735385-53.823303 0-95.99914 41.535923-95.99914 94.559333 0 17.664722-14.336138 31.99914-32.00086 31.99914s-32.00086-14.336138-32.00086-31.99914c0-87.423948 71.775299-158.559333 160.00086-158.559333s160.00086 72.095256 160.00086 160.735385c0 47.904099-36.32028 84.191695-71.424378 119.295794-27.839699 27.776052-56.575622 56.511974-56.575622 82.3356l0 54.112297C544.00086 659.328155 529.664722 673.695256 512 673.695256z"
+                            fill="blue" p-id="3182">
+                        </path>
+                    </svg></span>
+            </div>
+            <div class="foot">
             <select>
                 <option>优惠卷</option>
                 <option>5元</option>
                 <option>10元</option>
             </select>
-            <div class="suan">结算
-                <div class="sun">{{ countdown }}</div>
-                <button @click="startCountdown">倒计时</button>
-                
+            <div class="right">
+                <pre>共<span style="color:fuchsia">{{one}}</span>件商品 商品金额￥</pre>
+                <pre>总金额（未含运费）<span style="color:fuchsia">￥550</span></pre>
             </div>
         </div>
+        <div class="gtr">
+            <span class="com">请在倒计时结束前结算
+                <svg t="1690722014701" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                    xmlns="http://www.w3.org/2000/svg" p-id="3179" width="15" height="15">
+                    <path
+                        d="M463.99957 784.352211c0 26.509985 21.490445 48.00043 48.00043 48.00043s48.00043-21.490445 48.00043-48.00043c0-26.509985-21.490445-48.00043-48.00043-48.00043S463.99957 757.842226 463.99957 784.352211z"
+                        fill="blue" p-id="3180"></path>
+                    <path
+                        d="M512 960c-247.039484 0-448-200.960516-448-448S264.960516 64 512 64 960 264.960516 960 512 759.039484 960 512 960zM512 128.287273c-211.584464 0-383.712727 172.128262-383.712727 383.712727 0 211.551781 172.128262 383.712727 383.712727 383.712727 211.551781 0 383.712727-172.159226 383.712727-383.712727C895.712727 300.415536 723.551781 128.287273 512 128.287273z"
+                        fill="blue" p-id="3181"></path>
+                    <path
+                        d="M512 673.695256c-17.664722 0-32.00086-14.336138-32.00086-31.99914l0-54.112297c0-52.352533 39.999785-92.352318 75.32751-127.647359 25.887273-25.919957 52.67249-52.67249 52.67249-74.016718 0-53.343368-43.07206-96.735385-95.99914-96.735385-53.823303 0-95.99914 41.535923-95.99914 94.559333 0 17.664722-14.336138 31.99914-32.00086 31.99914s-32.00086-14.336138-32.00086-31.99914c0-87.423948 71.775299-158.559333 160.00086-158.559333s160.00086 72.095256 160.00086 160.735385c0 47.904099-36.32028 84.191695-71.424378 119.295794-27.839699 27.776052-56.575622 56.511974-56.575622 82.3356l0 54.112297C544.00086 659.328155 529.664722 673.695256 512 673.695256z"
+                        fill="blue" p-id="3182">
+                    </path>
+                </svg>
+            </span>
+            <div class="sun"  @click="startCountdown">
+                立即结算{{formatTime }}
+               </div>
+           
+        </div>
+        </div>
+       
     </div>
 
 </body>
 <script>
     new Vue({
         el: "#app",
-        data: {
+       
+      data: {
+
             tes: [
                 {
                     id: 0,
+                    img: "img/1.jpg",
                     te: "特卖价",
                     jing: "￥198",
                     yuan: "￥689",
                     zhe: "2.9折 ",
                     nei: "2023夏季新款温柔度假风轻薄外套女改良版本",
                     quantity: 1,
+                   
                 },
                 {
                     id: 1,
+                    img: "img/2.jpg",
                     te: "特卖价",
                     jing: "￥196.8",
                     yuan: "￥896",
@@ -206,29 +289,33 @@
                     nei: "2023夏季新款温柔度假风轻薄外套女改良版本快来抢购",
                     quantity: 1,
                     
+
                 },
                 {
                     id: 2,
+                    img: "img/3.jpg",
                     te: "特卖价",
                     jing: "￥189",
                     yuan: "￥698",
                     zhe: "2.7折 ",
                     nei: "夏季新款温柔度假风轻薄外套女改良版本气质风盘连衣裙",
                     quantity: 1,
-                   
+                    
                 },
                 {
                     id: 3,
+                    img: "img/4.jpg",
                     te: "特卖价",
                     jing: "￥314",
                     yuan: "￥1089",
                     zhe: "2.9折 ",
                     nei: "2023夏季新款温柔度假风轻薄外套女改良版本气质风盘红色连衣裙 ",
                     quantity: 1,
-                  
+                   
                 },
                 {
                     id: 4,
+                    img: "img/5.jpg",
                     te: "特卖价",
                     jing: "￥220",
                     yuan: "￥1076",
@@ -236,21 +323,13 @@
                     nei: "夏季新款温柔度假风轻薄外套女改良版本气质风盘连衣裙",
                     quantity: 1,
                    
+
                 },
                 {
                     id: 5,
+                    img: "img/6.jpg",
                     te: "特卖价",
                     jing: "￥250",
-                    yuan: "￥1076",
-                    zhe: "2.3折 ",
-                    nei: "夏季新款温柔度假风轻薄外套女改良版本气质风盘连衣裙",
-                    quantity: 1,
-               
-                },
-                {
-                    id: 6,
-                    te: "特卖价",
-                    jing: "￥150",
                     yuan: "￥1076",
                     zhe: "2.3折 ",
                     nei: "夏季新款温柔度假风轻薄外套女改良版本气质风盘连衣裙",
@@ -258,78 +337,113 @@
                     
                 },
                 {
+                    id: 6,
+                    img: "img/7.jpg",
+                    te: "特卖价",
+                    jing: "￥150",
+                    yuan: "￥1076",
+                    zhe: "2.3折 ",
+                    nei: "夏季新款温柔度假风轻薄外套女改良版本气质风盘连衣裙",
+                    quantity: 1,
+                  
+
+                },
+                {
                     id: 7,
+                    img: "img/8.jpg",
                     te: "特卖价",
                     jing: "￥198",
                     yuan: "￥689",
                     zhe: "2.9折 ",
                     nei: "2023夏季新款温柔度假风轻薄外套女改良版本",
                     quantity: 1,
-                   
+                    
+
                 },
                 {
                     id: 8,
+                    img: "img/9.jpg",
                     te: "特卖价",
                     jing: "￥196.8",
                     yuan: "￥896",
                     zhe: "2.2折 ",
                     nei: "2023夏季新款温柔度假风轻薄外套女改良版本快来抢购",
                     quantity: 1,
-                  
-                },
+                  },
                 {
                     id: 9,
+                    img: "img/10.jpg",
                     te: "特卖价",
                     jing: "￥189",
                     yuan: "￥698",
                     zhe: "2.7折 ",
                     nei: "夏季新款温柔度假风轻薄外套女改良版本气质风盘连衣裙",
                     quantity: 1,
-                 
-
-                }],
+                    }],
             yu: [{
-                shang: "模版",
-                jing: "￥",
-                quantity:1,
-
-            }],
-            countdown:0,
-
+                img: "img/1.jpg",
+                nei: "2023夏季新款温柔度假风轻薄外套女改良版本",
+                jing: "￥198",
+                quantity: 1,
+             
+             }],
+            countdownTime: 20 * 60,
+            one:1,
+            
+           
         },
         methods: {
             charset(index) {
+                
                 this.yu.push(this.tes[index]);
+                this.one++;
+            
             },
             //删除
             shan(index) {
                 this.yu.splice(index, 1);
             },
             //加
-            jiao() {
-                this.tes.forEach(item => {
-                    item.quantity += 1;
-                })
+            jiao(index) {
+                if (this.yu[index].quantity >= 10) {
+                    confirm("库存不足");
+                    return
+                }
+                this.yu[index].quantity++;
+                this.one++;
             },
             //减
-            jian() {
-                this.tes.forEach(item => {
-                    item.quantity -= 1;
-                })
-             },
-     startCountdown() {
-      this.countdown = 20;
-      this.countdownTimer = setInterval(() => {
-        if (this.countdown > 0) {
-          this.countdown--;
-        } else {
-          clearInterval(this.countdownTimer);
-        }
-      }, 1000);
-
-        }
-    }
-})
+            jian(index) {
+                if (this.yu[index].quantity == 1) {
+                    confirm("最少选一件");
+                    return
+                }
+                this.yu[index].quantity--;
+                this.one--;
+            },
+            //倒计时
+            formatNumber(value) {
+                return value.toString().padStart(2, '0');
+            },
+            startCountdown() {
+                setInterval(() => {
+                    if (this.countdownTime > 0) {
+                        this.countdownTime--;
+                    }
+            }, 1000);
+              }
+        },
+        computed: {
+            formatTime() {
+                const minutes = Math.floor(this.countdownTime / 60);
+                const seconds = this.countdownTime % 60;
+                return `${this.formatNumber(minutes)}:${this.formatNumber(seconds)}`;
+            },
+         },
+        mounted() {
+            this.startCountdown();
+        },
+    })
 </script>
 
 </html>

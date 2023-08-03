@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="/git/giantiange/comunt/vue.js"></script>
+  <style>
+    #app {
+      width: 600px;
+      height: 900px;
+      margin: auto;
+      background-color: antiquewhite;
+
+    }
+
+    li {
+      list-style: none;
+    }
+
+    .container {
+      width: 600px;
+
+      background-color: aqua;
+    }
+
+    h1 {
+      text-align: center;
+      color: brown;
+    }
+
+    .control {
+      width: 500px;
+      height: 50px;
+      margin-left: 50px;
+      font-size: 24px;
+      background-color: aquamarine;
+    }
+
+    .span {
+      width: 457px;
+      line-height: 50px;
+      display: inline-block;
+      background-color: pink;
+      position: relative;
+      margin-left: 50px;
+    }
+
+    .solids {
+      text-decoration: line-through;
+      color: #999;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div class="container">
+      <h1>备忘录</h1>
+      <hr>
+
+      <div>
+        <input type="text" v-model="newMemo" placeholder="请输入备忘录内容" class="control">
+      </div>
+      <ul class="span">
+        <li v-for="(memo, index) in memos" :key="index" >
+          <input type="checkbox" v-model="selectedMemos.myZt" :value="index"
+           @click="finishs">
+             <span>{{ memo }}</span>
+          <button @click="deleteMemo(index)">删除</button>
+        </li>
+      </ul>
+       <br>
+      <button @click="addMemo">添加</button>
+      <button>{{finish}}已完成</button>
+      <button>{{finish}}未完成</button>
+      <button @click="deleteSelectedMemos">删除选中</button>
+      <button @click="clearMemos">清空</button>
+    </div>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      finishs:false,
+     myZt:false,
+      
+    data: {
+        newMemo: '',
+        memos: [],
+        selectedMemos: [],
+        finish: 0,
+      },
+      methods: {
+
+        //已完成
+        finishs() {
+          
+          let res = this.memos.filter((memos) => {
+            return memos.selectedMemos;
+          });
+          if(myzt==true){
+            this.finish++;
+            
+          }
+          this. memos= this.tmp;
+          // console.log(selectedMemos);
+          // if (this.selectedMemos==false) {
+          //   return  this.finish++;
+          //   }
+           
+        },
+        //未完成
+        white(){
+          if (this.selectedMemos==true) {
+            return  this.finish++;
+            }
+        },
+        //添加
+        addMemo() {
+          // if (this.newMemo !== '') {
+          this.memos.push(this.newMemo);
+          // this.finish++;
+          //   this.newMemo = '';
+          // }
+        // 存数据
+        //  localStorage.setItem('dar', JSON.stringify(dar))
+        },
+        //删除
+        deleteMemo(index) {
+          this.memos.splice(index, 1);
+          let selectedIndex = this.selectedMemos.indexOf(index);
+          if (selectedIndex > -1) {
+            this.selectedMemos.splice(selectedIndex, 1);
+          }
+        },
+        //删除选中
+        deleteSelectedMemos() {
+          for (let i = this.selectedMemos.length - 1; i >= 0; i--) {
+            this.memos.splice(this.selectedMemos[i], 1);
+          }
+          this.selectedMemos = [];
+        },
+        //清空
+        clearMemos() {
+          this.memos = [];
+          this.selectedMemos = [];
+        }
+      }
+    });
+  </script>
+
+</body>
+
+</html>
