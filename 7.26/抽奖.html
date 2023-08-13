@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/git/giantiange/comunt/vue.js"></script>
+<style>
+    #header{
+             width: 900px;
+             height: 970px;
+             margin: auto;
+             background-color: #976767;
+             display: flex;
+             flex-wrap: wrap;
+        }
+    .Nine{
+        width: 279px;
+        height: 300px;
+        margin: 10px;
+        background-color:pink;
+}
+    
+
+</style>
+</head>
+<body>
+    <div id="app">
+          <div id="header">
+            <div class="Nine" v-for="(time,index) in tes" :key="index">
+                <img >
+                <h1>{{time.writing}}</h1>
+            </div>
+            
+          </div>
+    </div>
+</body>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            tes:[
+                {img:"",writing:"谢谢参与",},
+                {img:"",writing:"美女一个",},
+                {img:"",writing:"宝马一辆",},
+                {img:"",writing:"鲜花一盆",},
+                {img:"",writing:"消耗",},
+                {img:"",writing:"单车一辆",},
+                {img:"",writing:"靓号一个",},
+                {img:"",writing:"500红包",},
+                {img:"",writing:"鸡蛋一篮",},
+           
+            ]
+        },
+        methods: {},
+
+    })
+    
+    
+
+</script>
+</html>
